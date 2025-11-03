@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    int tab[5];
+    int tab[10];
     
     for (int i = 0; i < 10; i++) {
         tab[i] = i;  
@@ -12,3 +12,4 @@ int main() {
     printf("fait\n");
     return 0;
 }
+/* Le tableau était trop petit ligne 4 */

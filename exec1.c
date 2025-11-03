@@ -13,4 +13,4 @@ int main() {
     }
 
     return 0;
-}
+}/* La division par 0 est interdite , on crée une condition */
