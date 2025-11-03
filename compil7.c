@@ -11,4 +11,5 @@ int main() {
     }
     printf("OK %d\n", tableau[5]);
     return 0;
-}
+}/*le tableau est déclaré pour les valeurs de 1 à 4 , hors quand on écrit tableau[5] , on est hors bornes 
+Correction : ligne 12 tableau[6] */
