@@ -11,5 +11,6 @@ int main() {
 compil3.c:5:5: error: 'b' undeclared (first use in this function)
      b = 10;
      ^
-compil3.c:5:5: note: each undeclared identifier is reported only once for each function it appears in*/
+compil3.c:5:5: note: each undeclared identifier is reported only once for each function it appears in 
+la variable b n'etait pas déclarée correction : int pour déclarer le type de la variable */
 
