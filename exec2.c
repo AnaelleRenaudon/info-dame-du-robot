@@ -12,4 +12,4 @@ int main() {
     printf("fait\n");
     return 0;
 }
-/* Le tableau était trop petit ligne 4 */
+/* Le tableau était trop petit ligne 4 je l'ai agrandi*/
