@@ -6,3 +6,10 @@ void afficher_menu() {
     printf("2. Quitter\n");
 }
 
+int saisir_montant() {
+    int montant;
+    printf("Entrez un montant : ");
+    scanf("%d", &montant);
+    return montant;
+}
+
