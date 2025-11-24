@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void afficher_menu() {
-    printf("\n--- DISTRIBUTEUR DE BILLETS ---\n");
+    printf("\n DISTRIBUTEUR DE BILLETS \n");
     printf("1. Retirer un montant\n");
     printf("2. Quitter\n");
 }
@@ -32,3 +32,42 @@ int montant_valide(int montant) {
 
     return 1;
 }
+void calcul_distribution(int montant) {
+
+    int b50 = montant / 50;
+    montant = montant % 50;
+
+    int b20 = montant / 20;
+    montant = montant % 20;
+
+    int b10 = montant / 10;
+    montant = montant % 10;
+
+    int b5 = montant / 5;
+
+    printf("Distribution :\n");
+
+    printf("Billets de 50 : %d\n", b50);
+    printf("Billets de 20 : %d\n", b20);
+    printf("Billets de 10 : %d\n", b10);
+    printf("Billets de 5  : %d\n", b5);
+}
+int main() {
+
+    int choix = 0;
+
+    while (choix != 2) {
+
+        afficher_menu();
+        printf("Votre choix : ");
+        scanf("%d", &choix);
+
+        if (choix == 1) {
+
+            int montant = saisir_montant();
+
+            if (montant_valide(montant)) {
+                calcul_distribution(montant);
+            }
+        }
+    }}
