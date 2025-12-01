@@ -16,4 +16,6 @@ void afficherCategories(const char* categories[]);
 void ajouterConsommation(int conso[], const char* categories[]);
 void afficherResume(int conso[], const char* categories[], const char* emojis[]);
 
+void afficherObjectifsEtScore(int conso[], const char* categories[], const char* emojis[], const int objectifs[], const int poids[]);
+
 #endif

@@ -69,13 +69,13 @@ void ajouterConsommation(int conso[], const char* categories[]) {
 }
 
 void afficherResume(int conso[], const char* categories[], const char* emojis[]) {
-    printf("\nResume du jour:\n");
+    printf("\n======== Resume du jour ========\n");
 
     for (int i = 0; i < 7; i++) {
         printf("%s %s:\t%d\n", emojis[i], categories[i], conso[i]); 
     }
     
-    printf("\n");
+    printf("================================\n"); 
 }
 
 void chargerDonnees(int conso[]) {
@@ -89,7 +89,7 @@ void chargerDonnees(int conso[]) {
     }
 
     printf("Donnees chargees depuis conso.txt.\n");
-    for (i = 0; i < 7; i++) {
+    for (int i = 0; i < 7; i++) {
         if (fscanf(fichier, "%d", &conso[i]) != 1) {
             for (int j = i; j < 7; j++) {
                 conso[j] = 0;
@@ -99,4 +99,66 @@ void chargerDonnees(int conso[]) {
     }
 
     fclose(fichier);
+}
+
+void sauvegarderDonnees(int conso[]) {
+    FILE *fichier = fopen("conso.txt", "w"); 
+    int i;
+    int succes = 1;
+
+    if (fichier == NULL) {
+        printf("Erreur lors de l'ouverture du fichier de sauvegarde !\n");
+        return;
+    }
+
+    for (i = 0; i < 7; i++) {
+        if (fprintf(fichier, "%d ", conso[i]) < 2) { 
+            succes = 0;
+            break; 
+        }
+    }
+    
+    if (fclose(fichier) == EOF) {
+        succes = 0;
+    }
+
+    if (succes) {
+        printf("Donnees sauvegardees avec succes dans conso.txt.\n");
+    } else {
+        printf("Avertissement: Erreur lors de la sauvegarde des donnees.\n");
+    }
+}
+
+void afficherObjectifsEtScore(int conso[], const char* categories[], const char* emojis[], const int objectifs[], const int poids[]) {
+    int scoreTotal = 0;
+    
+    printf("\n======== Objectifs et Score ========\n");
+
+    for (int i = 0; i < 7; i++) {
+        int reussi;
+        int scoreCategorie = 0;
+        
+        if (objectifs[i] > 0) {
+            reussi = (conso[i] >= objectifs[i]);
+            scoreCategorie = reussi ? poids[i] : 0;
+        } else {
+            reussi = (conso[i] == 0); 
+            scoreCategorie = conso[i] > 0 ? poids[i] : 0;
+        }
+
+        scoreTotal += scoreCategorie;
+        
+        printf("%s %-8s | Obj: %d | Cnsm: %d | Statut: %s | Score: %d\n",
+            emojis[i],
+            categories[i],
+            objectifs[i],
+            conso[i],
+            reussi ? "REUSSI" : "ECHEC",
+            scoreCategorie
+        );
+    }
+
+    printf("======================================\n");
+    printf("SCORE TOTAL DU JOUR : %d\n", scoreTotal);
+    printf("======================================\n");
 }
