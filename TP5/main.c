@@ -44,7 +44,8 @@ int main() {
         afficherMenu();
         choix = lireChoixUtilisateur();
     }
-    
+
+    sauvegarderDonnees(conso);
     printf("Arret du programme. Au revoir !\n");
 
     return 0;
