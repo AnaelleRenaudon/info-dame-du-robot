@@ -72,3 +72,13 @@ void ajouterConsommation(int conso[]) {
         printf("Choix de categorie invalide.\n");
     }
 }
+
+void afficherResume(int conso[]) {
+    printf("\n======== Resume du jour ========\n");
+
+    for (int i = 0; i < 7; i++) {
+        printf("%s:\t%d\n", CATEGORIES[i], conso[i]); 
+    }
+
+    printf("================================\n");
+}
