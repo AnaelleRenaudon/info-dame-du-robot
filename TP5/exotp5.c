@@ -8,10 +8,41 @@ static const char* EMOJIS_CATEGORIES[7] = {
     "💧", "☕", "🍬", "🍰", "🥦", "🍎", "🍗"
 };
 static const int OBJECTIFS[7] = {
-    2, 1, 0, 0, 3, 2, 1
+    2,  
+    1,  
+    0,  
+    0,  
+    3,  
+    2,  
+    1   
 };
 static const int POIDS_SCORE[7] = {
-    5, 5, -10, -10, 15, 10, 10
+    5,   
+    5,   
+    -10, 
+    -10, 
+    15,  
+    10,  
+    10   
+};
+
+static const char* HUMEUR_BONBONS[3] = {
+    "😇", 
+    "🙂", 
+    "😐"
+    "😈"
+};
+
+static const char* HUMEUR_LEGUMES[4] = {
+    "😭",
+    "🙂", 
+    "😎"  
+};
+
+static const char* HUMEUR_FRUITS[3] = {
+    "😢", 
+    "🙂", 
+    "😀"  
 };
 
 void afficherMenu() {
@@ -104,7 +135,6 @@ void chargerDonnees(int conso[]) {
     printf("Donnees chargees depuis conso.txt.\n");
     for (int i = 0; i < 7; i++) {
         if (fscanf(fichier, "%d", &conso[i]) != 1) {
-        
             for (int j = i; j < 7; j++) {
                 conso[j] = 0;
             }
@@ -143,7 +173,7 @@ void sauvegarderDonnees(int conso[]) {
     }
 }
 
-void afficherObjectifsEtScore(int conso[]) {
+int afficherObjectifsEtScore(int conso[]) {
     int scoreTotal = 0;
     
     printf("\n======== Objectifs et Score ========\n");
@@ -153,16 +183,16 @@ void afficherObjectifsEtScore(int conso[]) {
         int scoreCategorie = 0;
         
         if (OBJECTIFS[i] > 0) {
-           
             reussi = (conso[i] >= OBJECTIFS[i]);
             scoreCategorie = reussi ? POIDS_SCORE[i] : 0;
         } else {
             reussi = (conso[i] == 0); 
             scoreCategorie = conso[i] > 0 ? POIDS_SCORE[i] : 0;
+        }
 
         scoreTotal += scoreCategorie;
         
-        printf("%s %-8s | Obj: %d | Cnsm: %d | Statut: %s | Score: %d\n",
+        printf("%s %-8s  Obj: %d  Cnsm: %d  Statut: %s  Score: %d\n",
             EMOJIS_CATEGORIES[i],
             CATEGORIES[i],
             OBJECTIFS[i],
@@ -175,4 +205,37 @@ void afficherObjectifsEtScore(int conso[]) {
     printf("======================================\n");
     printf("SCORE TOTAL DU JOUR : %d\n", scoreTotal);
     printf("======================================\n");
-} }
+    
+    return scoreTotal;
+}
+
+void analyserScore(int scoreTotal, int conso[]) {
+    printf("\n--- ANALYSE DU JOUR ---\n");
+    
+    printf("\n--- DETAILS ALIMENTAIRES ---\n");
+    
+    int consoBonbons = conso[2];
+    int indexBonbons = (consoBonbons >= 2) ? 2 : consoBonbons; 
+    const char* humeurBonbonsSel = HUMEUR_BONBONS[indexBonbons];
+    
+    printf("%s BONBONS : Vous avez consomme %d unite(s) sur un objectif de %d.\n",
+        humeurBonbonsSel, consoBonbons, OBJECTIFS[2]);
+
+    int consoLegumes = conso[4];
+    int objLegumes = OBJECTIFS[4];
+    int indexLegumes = (consoLegumes >= objLegumes) ? objLegumes : consoLegumes; 
+    const char* humeurLegumesSel = HUMEUR_LEGUMES[indexLegumes];
+    
+    printf("%s LEGUMES : Vous avez consomme %d unite(s) sur un objectif de %d.\n",
+        humeurLegumesSel, consoLegumes, objLegumes);
+
+    int consoFruits = conso[5];
+    int objFruits = OBJECTIFS[5];
+    int indexFruits = (consoFruits >= objFruits) ? objFruits : consoFruits; 
+    const char* humeurFruitsSel = HUMEUR_FRUITS[indexFruits];
+
+    printf("%s FRUITS : Vous avez consomme %d unite(s) sur un objectif de %d.\n",
+        humeurFruitsSel, consoFruits, objFruits);
+
+    printf("----------------------------\n");
+}
