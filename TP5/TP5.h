@@ -6,6 +6,5 @@ int lireChoixUtilisateur();
 void initialiser(int conso[]);
 void afficherCategories();
 void ajouterConsommation(int conso[]);
-void afficherResume(int conso[]);
 
 #endif

@@ -1,7 +1,13 @@
 #include <stdio.h>
+#include <Windows.h>
+#include <locale.h>
 #include "TP5.h"
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    setlocale(LC_ALL, ".UTF-8");
+    
     int conso[7]; 
     int choix;
 
@@ -30,7 +36,7 @@ int main() {
         choix = lireChoixUtilisateur();
     }
     
-    printf("Au revoir !\n");
+    printf("Arret du programme. Au revoir !\n");
 
     return 0;
 }

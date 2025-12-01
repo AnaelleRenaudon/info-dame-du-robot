@@ -6,6 +6,10 @@ const char* CATEGORIES[7] = {
     "Eau", "Cafe", "Bonbons", "Gateau", "Legumes", "Fruits", "Proteines"
 };
 
+const char* EMOJIS_CATEGORIES[7] = {
+    "💧", "☕", "🍬", "🍰", "🥦", "🍎", "🍗"
+};
+
 void afficherMenu() {
     printf("\n============ Suivi de consommation ============\n");
     printf("1. Ajouter une consommation\n");            
@@ -74,11 +78,11 @@ void ajouterConsommation(int conso[]) {
 }
 
 void afficherResume(int conso[]) {
-    printf("\n======== Resume du jour ========\n");
+    printf("\nResume du jour:\n");
 
     for (int i = 0; i < 7; i++) {
-        printf("%s:\t%d\n", CATEGORIES[i], conso[i]); 
+        printf("%s %s:\t%d\n", EMOJIS_CATEGORIES[i], CATEGORIES[i], conso[i]); 
     }
-
-    printf("================================\n");
+    
+    printf("\n");
 }
