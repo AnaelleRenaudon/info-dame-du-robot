@@ -11,11 +11,9 @@ int lireChoixUtilisateur();
 void initialiser(int conso[]);
 void chargerDonnees(int conso[]);
 void sauvegarderDonnees(int conso[]);
-
-void afficherCategories(const char* categories[]);
-void ajouterConsommation(int conso[], const char* categories[]);
-void afficherResume(int conso[], const char* categories[], const char* emojis[]);
-
-void afficherObjectifsEtScore(int conso[], const char* categories[], const char* emojis[], const int objectifs[], const int poids[]);
+void afficherCategories();
+void ajouterConsommation(int conso[]);
+void afficherResume(int conso[]);
+void afficherObjectifsEtScore(int conso[]);
 
 #endif
