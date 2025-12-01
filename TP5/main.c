@@ -26,7 +26,7 @@ int main() {
         choix = lireChoixUtilisateur();
     }
     
-    printf("Arret du programme. Au revoir !\n");
+    printf(" Au revoir !\n");
 
     return 0;
 }
