@@ -1,14 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "TP5.h"
-
-const char* CATEGORIES[7] = {
-    "Eau", "Cafe", "Bonbons", "Gateau", "Legumes", "Fruits", "Proteines"
-};
-
-const char* EMOJIS_CATEGORIES[7] = {
-    "💧", "☕", "🍬", "🍰", "🥦", "🍎", "🍗"
-};
 
 void afficherMenu() {
     printf("\n============ Suivi de consommation ============\n");
@@ -38,19 +29,19 @@ void initialiser(int conso[]) {
     }
 }
 
-void afficherCategories() {
+void afficherCategories(const char* categories[]) {
     printf("\nQuelle categorie voulez-vous modifier ?\n");
     for (int i = 0; i < 7; i++) {
-        printf("%d. %s\n", i + 1, CATEGORIES[i]);
+        printf("%d. %s\n", i + 1, categories[i]);
     }
     printf("Votre choix: ");
 }
 
-void ajouterConsommation(int conso[]) {
+void ajouterConsommation(int conso[], const char* categories[]) {
     int choix_cat;
     int quantite;
 
-    afficherCategories();
+    afficherCategories(categories);
     
     if (scanf("%d", &choix_cat) != 1) {
         while (getchar() != '\n');
@@ -61,7 +52,7 @@ void ajouterConsommation(int conso[]) {
     while (getchar() != '\n'); 
     
     if (choix_cat >= 1 && choix_cat <= 7) {
-        printf("Combien d'unites ajouter a %s ? ", CATEGORIES[choix_cat - 1]);
+        printf("Combien d'unites ajouter a %s ? ", categories[choix_cat - 1]);
         if (scanf("%d", &quantite) != 1) {
              while (getchar() != '\n');
              printf("Saisie invalide.\n");
@@ -71,18 +62,41 @@ void ajouterConsommation(int conso[]) {
         while (getchar() != '\n'); 
 
         conso[choix_cat - 1] += quantite; 
-        printf("Consommation de %s mise a jour.\n", CATEGORIES[choix_cat - 1]);
+        printf("Consommation de %s mise a jour.\n", categories[choix_cat - 1]);
     } else {
         printf("Choix de categorie invalide.\n");
     }
 }
 
-void afficherResume(int conso[]) {
+void afficherResume(int conso[], const char* categories[], const char* emojis[]) {
     printf("\nResume du jour:\n");
 
     for (int i = 0; i < 7; i++) {
-        printf("%s %s:\t%d\n", EMOJIS_CATEGORIES[i], CATEGORIES[i], conso[i]); 
+        printf("%s %s:\t%d\n", emojis[i], categories[i], conso[i]); 
     }
     
     printf("\n");
+}
+
+void chargerDonnees(int conso[]) {
+    FILE *fichier = fopen("conso.txt", "r");
+    int i;
+
+    if (fichier == NULL) {
+        printf("Fichier conso.txt non trouve. Initialisation des donnees a zero.\n");
+        initialiser(conso);
+        return;
+    }
+
+    printf("Donnees chargees depuis conso.txt.\n");
+    for (i = 0; i < 7; i++) {
+        if (fscanf(fichier, "%d", &conso[i]) != 1) {
+            for (int j = i; j < 7; j++) {
+                conso[j] = 0;
+            }
+            break;
+        }
+    }
+
+    fclose(fichier);
 }

@@ -1,17 +1,24 @@
 #include <stdio.h>
-#include <Windows.h>
-#include <locale.h>
 #include "TP5.h"
 
 int main() {
+
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
     setlocale(LC_ALL, ".UTF-8");
     
+    const char* CATEGORIES_LOCAL[7] = {
+        "Eau", "Cafe", "Bonbons", "Gateau", "Legumes", "Fruits", "Proteines"
+    };
+
+    const char* EMOJIS_LOCAL[7] = {
+        "💧", "☕", "🍬", "🍰", "🥦", "🍎", "🍗"
+    };
+    
     int conso[7]; 
     int choix;
 
-    initialiser(conso);
+    chargerDonnees(conso); 
 
     afficherMenu();
     choix = lireChoixUtilisateur();
@@ -19,10 +26,12 @@ int main() {
     while (choix != 4) {
         switch (choix) {
             case 1:
-                ajouterConsommation(conso);
+                
+                ajouterConsommation(conso, CATEGORIES_LOCAL);
                 break;
             case 2:
-                afficherResume(conso);
+                
+                afficherResume(conso, CATEGORIES_LOCAL, EMOJIS_LOCAL);
                 break;
             case 3:
                 break;
