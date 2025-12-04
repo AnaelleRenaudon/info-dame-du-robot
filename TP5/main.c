@@ -9,6 +9,7 @@ int main() {
     
     int conso[7]; 
     int choix;
+    int score;
 
     chargerDonnees(conso); 
 
@@ -27,12 +28,12 @@ int main() {
                 break;
             case 3:
                 
-                afficherObjectifsEtScore(conso);
+                score = afficherObjectifsEtScore(conso);
+                analyserScoreComplet(score, conso);
                 break;
-        }
-
-        if (choix < 1 || choix > 4) {
-             printf("Choix invalide. Veuillez reessayer.\n");
+            default:
+                 printf("Choix invalide. Veuillez reessayer.\n");
+                 break;
         }
 
         afficherMenu();

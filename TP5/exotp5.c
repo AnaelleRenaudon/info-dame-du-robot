@@ -116,7 +116,7 @@ void afficherResume(int conso[]) {
     printf("\n======== Resume du jour ========\n");
 
     for (int i = 0; i < 7; i++) {
-        printf("%s %s:\t%d\n", EMOJIS_CATEGORIES[i], CATEGORIES[i], conso[i]); 
+        printf("%s %-8s:\t%d\n", EMOJIS_CATEGORIES[i], CATEGORIES[i], conso[i]); 
     }
     
     printf("================================\n"); 
@@ -209,21 +209,38 @@ int afficherObjectifsEtScore(int conso[]) {
     return scoreTotal;
 }
 
-void analyserScore(int scoreTotal, int conso[]) {
-    printf("\n--- ANALYSE DU JOUR ---\n");
+void analyserScoreComplet(int scoreTotal, int conso[]) {
+    printf("\n--- ANALYSE DU JOUR (ETAPE 10) ---\n");
+    
+    printf("Score total : %d\n", scoreTotal);
     
     printf("\n--- DETAILS ALIMENTAIRES ---\n");
     
     int consoBonbons = conso[2];
-    int indexBonbons = (consoBonbons >= 2) ? 2 : consoBonbons; 
+    int objBonbons = OBJECTIFS[2];
+    int indexBonbons;
+
+    if (consoBonbons >= 3) {
+        indexBonbons = 3;
+    } else {
+        indexBonbons = consoBonbons;
+    }
+    
     const char* humeurBonbonsSel = HUMEUR_BONBONS[indexBonbons];
     
     printf("%s BONBONS : Vous avez consomme %d unite(s) sur un objectif de %d.\n",
-        humeurBonbonsSel, consoBonbons, OBJECTIFS[2]);
+        humeurBonbonsSel, consoBonbons, objBonbons);
 
     int consoLegumes = conso[4];
     int objLegumes = OBJECTIFS[4];
-    int indexLegumes = (consoLegumes >= objLegumes) ? objLegumes : consoLegumes; 
+    int indexLegumes;
+
+    if (consoLegumes >= objLegumes) {
+        indexLegumes = objLegumes;
+    } else {
+        indexLegumes = consoLegumes;
+    }
+    
     const char* humeurLegumesSel = HUMEUR_LEGUMES[indexLegumes];
     
     printf("%s LEGUMES : Vous avez consomme %d unite(s) sur un objectif de %d.\n",
@@ -231,11 +248,22 @@ void analyserScore(int scoreTotal, int conso[]) {
 
     int consoFruits = conso[5];
     int objFruits = OBJECTIFS[5];
-    int indexFruits = (consoFruits >= objFruits) ? objFruits : consoFruits; 
+    
+    int indexFruits;
+    if (consoFruits >= objFruits) {
+        indexFruits = objFruits;
+    } else {
+        indexFruits = consoFruits;
+    }
+    
     const char* humeurFruitsSel = HUMEUR_FRUITS[indexFruits];
 
     printf("%s FRUITS : Vous avez consomme %d unite(s) sur un objectif de %d.\n",
         humeurFruitsSel, consoFruits, objFruits);
 
     printf("----------------------------\n");
+}
+
+void analyserScore(int scoreTotal, int conso[]) {
+    analyserScoreComplet(scoreTotal, conso);
 }
