@@ -26,18 +26,17 @@ static const int POIDS_SCORE[7] = {
     10   
 };
 
-static const char* HUMEUR_BONBONS[4] = {
+static const char* HUMEUR_BONBONS[3] = {
     "😇", 
     "🙂", 
-    "😐",
-    "😈" 
+    "😐"
+    "😈"
 };
 
 static const char* HUMEUR_LEGUMES[4] = {
     "😭",
     "🙂", 
-    "😎",
-    "🤩"  
+    "😎"  
 };
 
 static const char* HUMEUR_FRUITS[3] = {
@@ -46,13 +45,13 @@ static const char* HUMEUR_FRUITS[3] = {
     "😀"  
 };
 
+
 void afficherMenu() {
     printf("\n============ Suivi de consommation ============\n");
     printf("1. Ajouter une consommation\n");            
     printf("2. Afficher le resume du jour\n");           
     printf("3. Afficher les objectifs et le score\n");   
-    printf("4. Reinitialiser les donnees\n");
-    printf("5. Sauvegarder et quitter\n");               
+    printf("4. Sauvegarder et quitter\n");               
     printf("Votre choix : ");                           
 }
 
@@ -73,11 +72,6 @@ void initialiser(int conso[]) {
     for (int i = 0; i < 7; i++) {
         conso[i] = 0;
     }
-}
-
-void reinitialiserConsommation(int conso[]) {
-    initialiser(conso);
-    printf("Toutes les donnees de consommation ont ete reinitialisees a zero.\n");
 }
 
 void afficherCategories() {
@@ -217,7 +211,7 @@ int afficherObjectifsEtScore(int conso[]) {
 }
 
 void analyserScoreComplet(int scoreTotal, int conso[]) {
-    printf("\n--- ANALYSE DU JOUR (ETAPE 10) ---\n");
+    printf("\n--- ANALYSE DU JOUR ---\n");
     
     printf("Score total : %d\n", scoreTotal);
     
