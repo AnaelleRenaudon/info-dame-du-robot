@@ -19,5 +19,6 @@ void afficherResume(int conso[]);
 int afficherObjectifsEtScore(int conso[]);
 void analyserScore(int scoreTotal, int conso[]);
 void analyserScoreComplet(int scoreTotal, int conso[]);
+void reinitialiserConsommation(int conso[]);
 
 #endif

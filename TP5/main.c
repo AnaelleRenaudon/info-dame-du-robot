@@ -16,7 +16,7 @@ int main() {
     afficherMenu();
     choix = lireChoixUtilisateur();
     
-    while (choix != 4) {
+    while (choix != 5) {
         switch (choix) {
             case 1:
             
@@ -30,6 +30,10 @@ int main() {
                 
                 score = afficherObjectifsEtScore(conso);
                 analyserScoreComplet(score, conso);
+                break;
+            case 4:
+                
+                reinitialiserConsommation(conso);
                 break;
             default:
                  printf("Choix invalide. Veuillez reessayer.\n");
