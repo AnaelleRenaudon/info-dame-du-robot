@@ -1,0 +1,117 @@
+#include "jeux.h"
+#include <conio.h> /* _kbhit, _getch */
+
+void remplir_tableau(char tableau_jeux[32][52])
+{
+    for (int i = 0; i < 32; i++)
+    {
+        for (int j = 0; j < 52; j++)
+        {
+            tableau_jeux[i][j] = ' ';
+            if (j == 0 || j == 51)
+            {
+                tableau_jeux[i][j] = '|';
+            }
+            if (i == 0 || i == 31)
+            {
+                tableau_jeux[i][j] = '-';
+            }
+        }
+    }
+}
+void ajouter_briques(char tableau[32][52])
+{
+    for (int i = 0; i < 12; i++)
+    {
+        for (int j = 0; j < 52; j++)
+        {
+            if (i < 10 && i > 2 && j < 48 && j > 3)
+            {
+                tableau[i][j] = '#';
+            }
+        }
+    }
+}
+void ajouter_balles(char tableau[32][52], int balle[3])
+{
+    tableau[balle[1]][balle[0]] = 'O';
+}
+
+void ajouter_plateforme(char tableau[32][52], int plateforme[3])
+{
+    int x = plateforme[0];
+    int y = plateforme[1];
+    int taille = plateforme[2];
+
+    for (int i = 0; i < taille; i++)
+    {
+        tableau[y][x + i] = '=';
+    }
+}
+
+void deplacer_plateforme(char tableau[32][52], int plateforme[3], char commande)
+{
+    int x = plateforme[0];
+    int y = plateforme[1];
+    int taille = plateforme[2];
+
+    for (int i = 0; i < taille; i++)
+        tableau[y][x + i] = ' ';
+
+    if (commande == 'q' && x > 1)
+        plateforme[0]--;
+
+    if (commande == 'd' && x + taille < 50)
+        plateforme[0]++;
+
+    for (int i = 0; i < taille; i++)
+        tableau[y][plateforme[0] + i] = '=';
+}
+
+void modifier_pos_balle(char tableau[32][52], int balle[3]){
+    switch (balle[2])
+    {
+    case 0:
+        balle[1] -= 1;
+        balle[0] -= 1;
+        break;
+    case 1:
+        balle[1] += 1;
+        balle[0] -= 1;
+        break;
+    case 2:
+        balle[1] += 1;
+        balle[0] += 1;
+        break;
+    case 3:
+        balle[1] -= 1;
+        balle[0] += 1;
+        break;
+    
+    default:
+        break;
+    }
+}
+
+
+void afficher_tab(char tableau_jeux[32][52])
+{
+    for (int i = 0; i < 32; i++)
+    {
+        for (int j = 0; j < 52; j++)
+        {
+            printf("%c", tableau_jeux[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+/* Lit une touche si disponible et la renvoie, sinon renvoie 0 */
+char lireCommandeNonBloquante()
+{
+    if (_kbhit())
+    {
+        return (char)_getch();
+    }
+    return 0;
+}

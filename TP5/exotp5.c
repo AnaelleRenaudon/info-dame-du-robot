@@ -268,3 +268,5 @@ void analyserScoreComplet(int scoreTotal, int conso[]) {
 void analyserScore(int scoreTotal, int conso[]) {
     analyserScoreComplet(scoreTotal, conso);
 }
+
+
