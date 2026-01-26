@@ -1,0 +1,3 @@
+- [x] Inline all functions into main: nbChiffres, puissance, estArmstrong, afficherArmstrong
+- [x] Remove separate function definitions
+- [ ] Test the simplified code to ensure it works correctly
