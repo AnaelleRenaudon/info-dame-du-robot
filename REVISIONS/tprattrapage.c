@@ -49,17 +49,12 @@ void joueur_tournoi (int nbjoueurs,char nom[],int age[], ) {
 }
 int main () {
 
+    int varNbJoueurs = 8;
+    char nom[];
+    int age[];
 
+    void inscriptionJoueurs;
+    void joueur_tournoi;
 
-
-
-
-
-
-
-
-
-
-
-
+    return 0;
 }
