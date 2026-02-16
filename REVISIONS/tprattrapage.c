@@ -40,11 +40,32 @@ char saisieScore (int nbmatch , int indice, char nom[],float score_joueur1,float
     }
 }
 
-void joueur_tournoi (int nbjoueurs,char nom[],int age[], ) {
 
-   while ( int nbjoueurs > 1 )
+   void joueur_tournoi (int nbjoueurs, char nom[], int age[]) {
 
-   return ; 
+   int i;
+   int gagnant;
+
+   while (nbjoueurs > 1) {
+
+       printf("\n Manche du tournoi \n");
+
+       for(i = 0; i < nbjoueurs; i = i + 2) {
+
+           printf("%s Vs %s\n", nom[i], nom[i+1]);
+           scanf("%d", &gagnant);
+
+           if(gagnant == 1) {
+               nom[i/2][0] = nom[i][0];  
+
+           }
+           else {
+               nom[i/2][0] = nom[i+1][0];
+           }
+       }
+
+       nbjoueurs = nbjoueurs / 2;
+   }
 
 }
 int main () {
