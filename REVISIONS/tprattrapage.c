@@ -31,13 +31,22 @@ char saisieScore (int nbmatch , int indice, char nom[],float score_joueur1,float
     /*Je n'arrivais pas à faire renvoyer les noms des joueurs donc jai mis leur indice directement */
 
     printf("Félicitations , le joueur 1 gagne contre le joueur 2 %d - %d\n" , score_joueur1 , score_joueur2 );
+    return indice;
 }
 
   else if (score_joueur1 < score_joueur2) {
     printf("Félicitations , le joueur 2 gagne contre le joueur 1 %d - %d\n" , score_joueur2 , score_joueur1);
+    return indice;
     }
 }
 
+void joueur_tournoi (int nbjoueurs,char nom[],int age[], ) {
+
+   while ( int nbjoueurs > 1 )
+
+   return ; 
+
+}
 int main () {
 
 
